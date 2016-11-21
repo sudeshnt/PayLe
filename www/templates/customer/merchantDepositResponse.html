@@ -1,0 +1,74 @@
+<ion-view>
+  <!--<ion-header-sbar>-->
+  <!--<div class="bar bar-header bar-light custom-nav-bar">-->
+  <!--<button class="button button-icon"><img src="img/backButton.png" style=" width:35px;"></button>-->
+  <!--<h1 class="title"></h1>-->
+  <!--<button class="button button-icon"><img src="img/payleLogo.png" style=" height:70px;"></button>-->
+  <!--</div>-->
+  <!--</ion-header-sbar>-->
+  <pay-le-header></pay-le-header>
+  <ion-content class="fixed-margin-above-88">
+    <div class="list list-inset fixed-margin-above">
+      <form class="form-horizontal" role="form" name="merchantDepositResponseForm">
+        <div class="form-group"   >
+          <span class="input-label full-width">{{'MERCHANT_CODE' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <input type="text" placeholder="{{'MERCHANT_CODE' | translate}}" ng-model="deposit.merchantCode" name="merchantCode" class="readonly-input" readonly>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'BUSINESS_NAME' | translate}} </span>
+          <label class="item item-input zero-padding" >
+            <input type="text" placeholder="{{'BUSINESS_NAME' | translate}}" ng-model="deposit.businessName" name="businessName" class="readonly-input" readonly>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'AMOUNT' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <div class="input-icon full-width zero-padding">
+              <i> &nbsp$</i>
+              <input type="number" placeholder="{{'AMOUNT' | translate}}" ng-model="deposit.amount" name="amount"  readonly>
+            </div>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'FULL_AMOUNT' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <div class="input-icon full-width zero-padding">
+              <i> &nbsp$</i>
+              <input type="number" placeholder="{{'FULL_AMOUNT' | translate}}" ng-model="deposit.fullAmount" name="fullAmount"  readonly>
+            </div>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'MOBILE' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <input type="tel" placeholder="{{'MOBILE' | translate}}" ng-model="deposit.mobile" name="mobile" class="readonly-input" readonly>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'EMAIL' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <input type="email" placeholder="{{'EMAIL' | translate}}" ng-model="deposit.email" name="email" class="readonly-input" readonly>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'CARD_TYPE' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <input type="text" placeholder="{{'BUSINESS_NAME' | translate}}" ng-model="deposit.cardType" name="cardType" class="readonly-input" readonly>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'COMMENTS' | translate}} </span>
+          <label class="item item-input zero-padding">
+            <textarea rows="4" placeholder="{{'COMMENTS' | translate}}" ng-model="deposit.comment" name="comment" class="readonly-input" readonly></textarea>
+          </label>
+        </div>
+        <div class="form-group">
+          <a class="button button-block button-positive custom-height-button" ng-click="clickNext()">{{'NEXT' | translate}}</a>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

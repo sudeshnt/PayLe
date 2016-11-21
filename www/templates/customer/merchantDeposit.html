@@ -1,0 +1,68 @@
+<ion-view>
+    <!--<ion-header-sbar>-->
+        <!--<div class="bar bar-header bar-light custom-nav-bar">-->
+            <!--<button class="button button-icon"><img src="img/backButton.png" style=" width:35px;"></button>-->
+            <!--<h1 class="title"></h1>-->
+            <!--<button class="button button-icon"><img src="img/payleLogo.png" style=" height:70px;"></button>-->
+        <!--</div>-->
+    <!--</ion-header-sbar>-->
+  <pay-le-header></pay-le-header>
+  <ion-content class="fixed-margin-above-88">
+    <div class="list list-inset fixed-margin-above">
+     <form class="form-horizontal" role="form" name="merchantDepositForm">
+       <div class="form-group">
+           <span class="input-label full-width">{{'MERCHANT_CODE' | translate}} <span class="required"> *</span></span>
+           <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.merchantCode.$touched) && merchantDepositForm.merchantCode.$error.required) ? 'input-required' : ''">
+                <input type="number" placeholder="{{'MERCHANT_CODE' | translate}}" ng-model="deposit.merchantCode" name="merchantCode"  required>
+           </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'AMOUNT' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.amount.$touched) && merchantDepositForm.amount.$error.required) ? 'input-required' : ''">
+           <div class="input-icon">
+             <i>$</i>
+             <input type="number" placeholder="{{'AMOUNT' | translate}}" ng-model="deposit.amount" name="amount" required>
+           </div>
+         </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'CUSTOMER_MOBILE' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.customerMobile.$touched) && merchantDepositForm.customerMobile.$error.required) ? 'input-required' : ''">
+           <input type="tel" placeholder="{{'CUSTOMER_MOBILE' | translate}}" ng-model="deposit.customerMobile" name="customerMobile" required>
+         </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'CUSTOMER_EMAIL' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.customerEmail.$touched) && merchantDepositForm.customerEmail.$error.required) ? 'input-required' : ''">
+           <input type="email" placeholder="{{'CUSTOMER_EMAIL' | translate}}" ng-model="deposit.customerEmail" name="customerEmail" required>
+         </label>
+       </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'CARD_TYPE' | translate}} <span class="required"> *</span></span>
+         <div  class="row zero-padding">
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="deposit.cardType" ng-value="1"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="deposit.cardType" ng-value="2"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="deposit.cardType" ng-value="3"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+          </div>
+        </div>
+       <div class="form-group">
+         <span class="input-label full-width">{{'COMMENTS' | translate}} <span class="required"> *</span></span>
+         <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.comment.$touched) && merchantDepositForm.comment.$error.required) ? 'input-required' : ''">
+           <textarea rows="4" placeholder="{{'COMMENTS' | translate}}" ng-model="deposit.comment" name="comment"></textarea>
+         </label>
+       </div>
+       <div class="error" style="margin:1%" ng-if="errorDeposit">{{errorDeposit}}</div>
+       <div class="form-group">
+          <a class="button button-block button-positive custom-height-button" ng-click="merchantDeposit(merchantDepositForm.$valid)">{{'NEXT' | translate}}</a>
+       </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

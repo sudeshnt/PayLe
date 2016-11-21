@@ -1,0 +1,23 @@
+<ion-view>
+  <pay-le-header back="backNavigation"></pay-le-header>
+  <ion-content class="fixed-margin-above-45">
+
+    <ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+      <!-- Successful Tab -->
+      <ion-tab title="{{'SUCCESSFUL' | translate}}" icon-off="ion-ios-checkmark-outline" icon-on="ion-ios-checkmark" href="#/{{type}}/successful">
+        <ion-nav-view name="tab-successful"></ion-nav-view>
+      </ion-tab>
+      <!-- Pending Tab -->
+      <ion-tab title="{{'PENDING' | translate}}" ng-if="type=='withdrawals'" icon-off="ion-load-c" icon-on="ion-load-a" href="#/{{type}}/pending">
+        <ion-nav-view name="tab-pending"></ion-nav-view>
+      </ion-tab>
+      <!-- Rejected Tab -->
+      <ion-tab title="{{'REJECTED' | translate}}" icon-off="ion-ios-close-outline" icon-on="ion-ios-close" href="#/{{type}}/rejected">
+        <ion-nav-view name="tab-rejected"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+
+  </ion-content>
+
+</ion-view>

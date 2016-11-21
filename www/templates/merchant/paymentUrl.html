@@ -1,0 +1,44 @@
+<ion-view>
+  <pay-le-header></pay-le-header>
+  <ion-content>
+    <div class="list list-inset fixed-margin-above-130">
+      <span class="input-label full-width">{{'PAYMENT_URL' | translate}}</span>
+      <label class="item item-input">
+        <textarea rows="4" type="text" ng-model="paymentUrl"></textarea>
+      </label>
+
+      <div class="row">
+        <!--<a class="col col-20" ng-show="!shareWith" style="border-radius:50px;" ng-click="clickShareWith()"><i class="ion-android-share-alt" style="font-size: 60px;"></i><p style="font-size: 11px;">share with</p></a>-->
+        <!--<a class="col col-20" ng-show="shareWith" style="border-radius:50px;" ng-click="clickShareWith()"><i class="ion-android-close " style="font-size: 60px;"></i><p style="font-size: 11px;">share with</p></a>-->
+        <div class="col content-area sample-show-hide" ng-hide="!shareWith" id="socialShare">
+          <div class="row" >
+            <a class="col button icon social-share-button ion-social-facebook " ng-click="shareViaFacebook()" style="background:#3e5b98"></a>
+            <a class="col button icon social-share-button ion-social-twitter" ng-click="shareViaTwitter()" style="background:#4da7de"></a>
+            <a class="col button icon social-share-button ion-android-textsms" ng-click="shareViaText()" style="background:#75c9c9"></a>
+            <a class="col button icon social-share-button ion-social-whatsapp" ng-click="shareViaWhatsApp()" style="background:#4dc944"></a>
+            <a class="col button icon social-share-button ion-more" ng-click="chooseAnAppToShare()" style="background:#d66666"></a>
+          </div>
+        </div>
+      </div>
+      <div class="align-center">
+        <div class="align-center long-width">
+          <a class="button button-block custom-height-button full-width"  ng-click="clickShareWith()" style="height: 30px; background-color: #1e5969; color:white;">
+            <i class="ion-android-share-alt"></i> {{'SHARE_WITH' | translate}}
+          </a>
+        </div>
+        <div class="align-center long-width">
+          <a class="button button-block custom-height-button full-width" ng-click="authenticateUser(merchantLoginForm.$valid)" style="height: 30px; background-color: #1e5969; color:white;">
+            {{'CREATE_BILL' | translate}}
+          </a>
+        </div>
+      </div>
+
+     <!-- <div ng-init="shareWith = false">
+        <label>
+          <input type="checkbox" ng-model="shareWith" />
+          Is visible
+        </label>
+      </div>-->
+    </div>
+  </ion-content>
+</ion-view>

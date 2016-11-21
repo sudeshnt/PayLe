@@ -1,0 +1,47 @@
+<ion-view>
+  <pay-le-header></pay-le-header>
+  <ion-content>
+    <div class="list list-inset fixed-margin-above-75">
+      <div class="row">
+        <div class="col">
+          <div class="align-center">{{'FRONT_SIDE' | translate}}</div>
+          <div class="imagewrap">
+            <img ng-show="frontImgURI !== null" ng-src="{{frontImgURI}}" class="id-card" ng-click="viewImage('Front',frontImgURI)">
+            <img ng-show="frontImgURI === null" ng-src="img/ID-front.png" class="id-card">
+            <div class="row gallery-camera-button">
+              <a class="col button icon ion-upload social-share-button-black " ng-hide="frontUploadClicked" ng-click="uploadCLicked('front')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-images social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture('front','gallery')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-camera social-share-button-black sample-show-hide" ng-show="frontUploadClicked" ng-click="takePicture('front','camera')" style="background:#e6e6e6;"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="align-center">{{'BACK_SIDE' | translate}}</div>
+          <div class="imagewrap">
+            <img ng-show="backImgURI !== null" ng-src="{{backImgURI}}" class="id-card" ng-click="viewImage('Back',backImgURI)">
+            <img ng-show="backImgURI === null" ng-src="img/ID-back.png" class="id-card">
+            <div class="row gallery-camera-button">
+              <a class="col button icon ion-upload social-share-button-black " ng-hide="backUploadClicked" ng-click="uploadCLicked('back')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-images social-share-button-black sample-show-hide" ng-show="backUploadClicked" ng-click="takePicture('back','gallery')" style="background:#e6e6e6;"></a>
+              <a class="col button icon ion-camera social-share-button-black sample-show-hide" ng-show="backUploadClicked" ng-click="takePicture('back','camera')" style="background:#e6e6e6;"></a>
+            </div>
+           <!-- <input type="button" class="button2" value="Button 2" />-->
+          </div>
+        </div>
+      </div>
+      <div class="row border-thin">
+        <span class="input-label full-width align-center font-bold" style="max-width: none;">{{'EXPIRY_DATE' | translate}} : {{expiryDate}}</span>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <a class="button button-royal full-width custom-height-button" ng-click="openDatePicker()">
+          {{'SELECT_EXPIRY_DATE' | translate}}
+        </a>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <a class="button button-balanced full-width custom-height-button" ng-click="">
+          {{'VALIDATE_ID' | translate}}
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

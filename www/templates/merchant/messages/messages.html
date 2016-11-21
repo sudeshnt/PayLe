@@ -1,0 +1,14 @@
+<ion-view>
+  <pay-le-header></pay-le-header>
+  <ion-content style="margin-top: 78px;">
+    <div class="list">
+      <a class="item item-avatar" ng-repeat="message in messages"  ng-click="viewMessage(message)">
+        <img src="img\message.png" class="opacity">
+        <h2>{{message.sender}}</h2>
+        <p>{{message.content.substring(0, 15)+' ...'}}<span style="float: right;">{{message.receivedAt}}</span></p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
+
+

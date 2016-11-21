@@ -1,0 +1,54 @@
+<ion-view>
+  <pay-le-header back="back"></pay-le-header>
+  <ion-content class="fixed-margin-above-88">
+
+    <div style="padding:5%;">
+      <form  class="form-horizontal" role="form" name="requestWithdrawForm">
+        <div class="list">
+          <div class="form-group">
+            <span class="input-label full-width">{{'BANK_ACCOUNT' | translate}} <span class="required"> *</span></span>
+            <md-input-container class="custom-drop-down" ng-class="((formSubmitted || requestWithdrawForm.bankAccount.$touched) && requestWithdrawForm.bankAccount.$error.required) ? 'input-required' : ''">
+              <md-select ng-model="withdrawRequest.bankAccount" name="bankAccount" required>
+                <md-option ng-repeat="bankAccount in bankAccounts.data" ng-value="bankAccount" ng-selected="$index === 0">
+                  {{bankAccount.iban }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+
+          <div class="card font-bold" style="margin:8px 0px 0px 0px !important;">
+            <div style="padding: 10px;">
+              <div>
+            <span style="font-size: large; font-weight: 500;">
+              {{'ACTUAL_BALANCE' | translate}} : <span>{{fromCurrency}} {{actualBalance}}</span>
+            </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <span class="input-label full-width">{{'AMOUNT' | translate}} <span class="required"> *</span></span>
+            <label class="item item-input" ng-class="((formSubmitted || requestWithdrawForm.amount.$touched) && requestWithdrawForm.amount.$error.required) ? 'input-required' : ''" style="height:40px" required>
+              <div class="input-icon">
+                <i>$</i>
+                <input type="number" placeholder="{{'AMOUNT' | translate}}" ng-model="withdrawRequest.amount" name="amount" required>
+              </div>
+            </label>
+          </div>
+          <div class="form-group">
+            <span class="input-label full-width">{{'COMMENTS' | translate}}</span>
+            <label class="item item-input" ng-class="((formSubmitted || requestWithdrawForm.comment.$touched) && requestWithdrawForm.comment.$error.required) ? 'input-required' : ''">
+              <textarea rows="2" placeholder="{{'COMMENTS' | translate}}" ng-model="withdrawRequest.comment" name="comment"></textarea>
+            </label>
+          </div>
+          <span class="error" ng-if="errorMessage" ng-hide="requestWithdrawForm.amount.$error.required">{{errorMessage}}</span>
+          <div class="align-center">
+            <a class="button button-block button-balanced custom-height-button full-width" ng-click="requestWithdrawal(requestWithdrawForm.$valid)" style="height: 30px;">
+              {{'REQUEST_WITHDRAW' | translate}}
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>
