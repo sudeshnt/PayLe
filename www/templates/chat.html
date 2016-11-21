@@ -1,30 +1,33 @@
-<ion-pane>
+<ion-view cache-view="false">
+  <ion-pane>
+    <ion-header-bar>
+      <h1 class="title" style="text-align: center">Blurred!</h1>
+    </ion-header-bar>
+    <ion-content class="padding" delegate-handle="myScroll">
+    <!--<ion-content class="padding" start-y="120">-->
+      <ol class="messages">
+        <li ng-repeat="message in messages track by $index" ng-class="message.messageType">
+          <div>
+            <img class="profile-pic" ng-src="{{message.sender.profilePic}}" ng-class="message.messageType">
+            <p ng-if="message.content.type=='text'" ng-class="message.messageType">{{message.content.content}}<br>
+              <span class="sender">{{message.sender.name}}</span>
+              <span style="float: right;">{{message.dateTime}}</span>
+            </p>
+            <img ng-if="message.content.type=='image'" ng-src="{{message.content.content}}" ng-class="message.messageType">
+          </div>
+        </li>
+      </ol>
+    </ion-content>
+    <ion-footer-bar class="bar-frosted item-input-inset message-footer" keyboard-attach>
+      <label class="item-input-wrapper zero-padding" style="border-radius: 9px;">
+        <textarea ng-model="input.message" value="" placeholder="Send merchant a message..." required minlength="1" maxlength="1500"></textarea>
+      </label>
+      <div class="footer-btn-wrap">
+        <a class="button button-icon icon ion-android-send footer-btn" ng-click="sendMessage(input.message)"
+           ng-disabled="!input.message || input.message === ''">
+        </a>
+      </div>
+    </ion-footer-bar>
+  </ion-pane>
+</ion-view>
 
-  <ion-header-bar>
-    <h1 class="title" style="text-align: center">Blurred!</h1>
-  </ion-header-bar>
-  <ion-content class="padding" start-y="120">
-    <ol class="messages">
-        <li ng-repeat="message in messages" ng-class="message.messageType">
-        <div>
-          <img class="profile-pic" ng-src="{{message.sender.profilePic}}" ng-class="message.messageType">
-          <p ng-if="message.content.type=='text'" ng-class="message.messageType">{{message.content.content}}<br>
-            <span class="sender">{{message.sender.name}}</span>
-            <span style="float: right;">{{message.dateTime}}</span>
-          </p>
-          <img ng-if="message.content.type=='image'" ng-src="{{message.content.content}}" ng-class="message.messageType">
-        </div>
-      </li>
-    </ol>
-  </ion-content>
-  <ion-footer-bar class="bar-frosted item-input-inset message-footer" keyboard-attach>
-    <label class="item-input-wrapper zero-padding" style="border-radius: 9px;">
-      <textarea ng-model="input.message" value="" placeholder="Send merchant a message..." required minlength="1" maxlength="1500"></textarea>
-    </label>
-    <div class="footer-btn-wrap">
-      <a class="button button-icon icon ion-android-send footer-btn" ng-click="sendMessage(input.message)"
-              ng-disabled="!input.message || input.message === ''">
-      </a>
-    </div>
-  </ion-footer-bar>
-</ion-pane>

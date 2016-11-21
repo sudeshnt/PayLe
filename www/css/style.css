@@ -2,6 +2,9 @@
 .small-letters{
   font-size: 10px;
 }
+.medium-letters{
+  font-size: 12px;
+}
 .align-center {
     text-align: center;
 }
@@ -380,6 +383,7 @@ span{
   height: 32px;
   padding: 0px !important;
   line-height: 25px;
+  height: 30px; background-color: #1e5969; color:white;
 }
 .custom-drop-down{
   width: 100%;
@@ -531,4 +535,10 @@ at the bottom as the textarea resizes */
 .footer-btn {
   position: absolute !important;
   bottom: 0;
+}
+
+.flag-buttons{
+  height: 18px;
+  margin: 0px 0px 0px 2%;
+  vertical-align: sub;
 }

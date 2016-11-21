@@ -4,7 +4,8 @@
 angular.module('starter').controller('customerHomeController', function ($scope,$state,serviceLocator,httpService) {
 
     $scope.deposit = {};
-    $scope.deposit.merchantCode = '1479281538066';
+    $scope.deposit.cardType = 1;
+    $scope.deposit.merchantCode = parseInt('1479722455625');
     $scope.merchantDeposit = function (isValid) {
        $scope.formSubmitted = true;
        if(isValid){
@@ -33,6 +34,7 @@ angular.module('starter').controller('customerHomeController', function ($scope,
 });
 
 angular.module('starter').controller('merchantDepositResponseController', function ($scope,$state,$stateParams,serviceLocator,httpService) {
+
   $scope.deposit = {
     "merchantCode":$stateParams.depositResponse.merchantCode,
     "businessName":$stateParams.depositResponse.businessName,

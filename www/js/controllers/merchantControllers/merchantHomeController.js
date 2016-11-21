@@ -259,8 +259,8 @@ angular.module('starter').controller('merchantLoginController', function ($scope
     //username password hardcoded
     //$scope.userLoginDetails = {};
     $scope.userLoginDetails = {
-      merchantCode:1479281538066,
-      password:'1234321'
+      merchantCode:1479722455625,
+      password:'1234567'
     };
     $scope.authenticateUser = function (isValid) {
       $scope.formSubmitted = true;
@@ -298,6 +298,39 @@ angular.module('starter').controller('PaymentUrlController', function ($scope,$s
         $scope.shareWith = false;
       }else{
         $scope.shareWith = true;
+      }
+    };
+
+    $scope.chooseAnAppToShare = function () {
+      window.plugins.socialsharing.share('Payment Url', null, null, $scope.paymentUrl);
+    };
+    $scope.shareViaFacebook = function () {
+      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Payment Url via Facebook', null /* img */, $scope.paymentUrl, 'Paste it and Share!', function() {console.log('share ok')}, function(errormsg){alert(errormsg)})
+    };
+    $scope.shareViaTwitter = function () {
+      window.plugins.socialsharing.shareViaTwitter('Payment Url via Twitter', null /* img */, $scope.paymentUrl)
+    };
+    $scope.shareViaWhatsApp = function () {
+      window.plugins.socialsharing.shareViaWhatsApp('Payment Url via WhatsApp', null /* img */, $scope.paymentUrl, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})
+    };
+    $scope.shareViaText = function () {
+      window.plugins.socialsharing.shareViaSMS($scope.paymentUrl, null /* see the note below */, function(msg) {console.log('ok: ' + msg)}, function(msg) {alert('error: ' + msg)})
+    };
+
+    $scope.openCreateBillPage = function () {
+      $state.go('createBill');
+    };
+});
+
+angular.module('starter').controller('CreateBillController', function ($scope,$state) {
+
+    $scope.paymentUrl = 'https://www.google.lk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=add+thick+border+bottom+css';
+    $scope.bill = {};
+    $scope.bill.paymentMethod = 1;
+    $scope.createBill = function (isValid) {
+      $scope.formSubmitted = true;
+      if(isValid){
+        console.log($scope.bill);
       }
     };
 
@@ -505,12 +538,13 @@ angular.module('starter').controller('TransactionController', function ($scope,$
       "offset":offset,
       "limit":limit,
       "pageNumber":'',
-      "key":"1479206830338",
+      "key":"1479722455625",
       //"key":$scope.authenticatedUser.merchantCode
       "id":type
     };
     httpService.postRequest(payLeService,extended_url,reqObj,{}).then(function(response){
       if(response!=null){
+        //console.log(response);
         if(!response.errorCode){
           if(response.data.length>0){
             offset+=limit;

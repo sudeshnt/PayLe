@@ -24,12 +24,12 @@
           <span class="error" ng-if="loginError" ng-hide="merchantRegistrationForm.iban.$error.required">{{loginError}}</span>
           <div class="align-center">
             <div class="align-center half-width">
-              <a  name="login" class="button button-block custom-height-button full-width" ng-click="authenticateUser(merchantLoginForm.$valid)" style="height: 30px; background-color: #1e5969; color:white;">
+              <a  name="login" class="button button-block custom-height-button full-width" ng-click="authenticateUser(merchantLoginForm.$valid)" >
                 {{'LOGIN' | translate}}
               </a>
             </div>
             <div class="align-center half-width">
-              <a class="button button-block button-assertive custom-height-button full-width" ng-click="openMerchantRegisterPage()" style="height: 30px;">
+              <a class="button button-block button-assertive custom-height-button full-width" ng-click="openMerchantRegisterPage()">
                 {{'REGISTER' | translate}}
               </a>
             </div>

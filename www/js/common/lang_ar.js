@@ -4,6 +4,7 @@
 angular.module('lang_ar',['pascalprecht.translate','ngSanitize'])
   .config(['$translateProvider',function($translateProvider){
     $translateProvider.translations('ar', {
+      LANGUAGE:'English',
       // main menu
       CUSTOMERS:'الزبائن',
       MERCHANTS:'التجار',
@@ -86,6 +87,8 @@ angular.module('lang_ar',['pascalprecht.translate','ngSanitize'])
       //payment url
       SHARE_WITH:'شارك مع',
       CREATE_BILL:'إنشاء بيل',
+      PAYMENT_METHOD:'طريقة الدفع او السداد',
+
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
     //$translateProvider.forceAsyncReload(true);

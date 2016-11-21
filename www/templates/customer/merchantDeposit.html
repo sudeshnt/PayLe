@@ -8,6 +8,7 @@
     <!--</ion-header-sbar>-->
   <pay-le-header></pay-le-header>
   <ion-content class="fixed-margin-above-88">
+    <a class="button" href="#/chat">chat</a>
     <div class="list list-inset fixed-margin-above">
      <form class="form-horizontal" role="form" name="merchantDepositForm">
        <div class="form-group">
@@ -50,7 +51,7 @@
               <ion-radio ng-model="deposit.cardType" ng-value="3"><img src="img/visamaster.png" class="full-width"></ion-radio>
             </div>
           </div>
-        </div>
+       </div>
        <div class="form-group">
          <span class="input-label full-width">{{'COMMENTS' | translate}} <span class="required"> *</span></span>
          <label class="item item-input" ng-class="((formSubmitted || merchantDepositForm.comment.$touched) && merchantDepositForm.comment.$error.required) ? 'input-required' : ''">
@@ -59,7 +60,7 @@
        </div>
        <div class="error" style="margin:1%" ng-if="errorDeposit">{{errorDeposit}}</div>
        <div class="form-group">
-          <a class="button button-block button-positive custom-height-button" ng-click="merchantDeposit(merchantDepositForm.$valid)">{{'NEXT' | translate}}</a>
+          <a class="button button-block custom-height-button" ng-click="merchantDeposit(merchantDepositForm.$valid)">{{'NEXT' | translate}}</a>
        </div>
       </form>
     </div>

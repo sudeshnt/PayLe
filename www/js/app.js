@@ -16,7 +16,7 @@ angular.module('starter', ['ionic',
                           'ionic.contrib.frostedGlass'
                           ])
 
-.run(function($ionicPlatform,RequestsService) {
+.run(function($ionicPlatform,$ionicPopup,RequestsService,$state,$stateParams,$cordovaToast,dateFilter) {
   $ionicPlatform.ready(function() {
     setTimeout(function() {
       navigator.splashscreen.hide();
@@ -43,20 +43,38 @@ angular.module('starter', ['ionic',
       }, null);
     }*/
 
+    pushNotification = window.plugins.pushNotification;
+
     window.onNotification = function(e){
       switch(e.event){
         case 'registered':
           if(e.regid.length > 0){
             var device_token = e.regid;
             //alert(device_token);
-            /*RequestsService.register(device_token).then(function(response){
-              alert('registered!');
-            });*/
+            RequestsService.register(device_token).then(function(response){
+              //alert('registered!');
+              //$cordovaToast.showLongBottom("registered for push notification!").then();
+            });
           }
           break;
-
         case 'message':
-          alert('msg received: ' + e.message);
+          console.log(JSON.stringify(e));
+          console.log($state.current.name);
+          if($state.current.name=='chat'){
+            $state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')});
+            // $state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')},{reload: true});
+          }else{
+              $ionicPopup.confirm({
+                title: 'New Message From Anne',
+                template: 'want to open chat window ?'
+              }).then(function(res) {
+                  if(res) {
+                    //$state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')},{reload: true});
+                    $state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')});
+                  }
+              });
+          }
+          //alert('msg received: ' + e.message);
           /*
            {
            "message": "Hello this is a push notification",
@@ -72,17 +90,15 @@ angular.module('starter', ['ionic',
            }
            */
           break;
-
         case 'error':
           alert('error occured');
           break;
-
       }
     };
 
     window.errorHandler = function(error){
       alert('an error occured');
-    }
+    };
 
     pushNotification.register(
       onNotification,
@@ -128,8 +144,13 @@ angular.module('starter', ['ionic',
     })
     .state('paymentUrl', {
       url: '/paymentUrl',
-      templateUrl: 'templates/merchant/paymentUrl.html',
+      templateUrl: 'templates/merchant/paymentUrl/paymentUrl.html',
       controller: 'PaymentUrlController'
+    })
+    .state('createBill', {
+      url: '/createBill',
+      templateUrl: 'templates/merchant/paymentUrl/createBill.html',
+      controller: 'CreateBillController',
     })
     .state('civilId', {
       url: '/civilId',
@@ -269,10 +290,12 @@ angular.module('starter', ['ionic',
       controller: 'CommonMessageController',
       params : {title:'null',message:'null',backNavigation:'null'}
     })
+
     .state('chat', {
       url: '/chat',
       templateUrl: 'templates/chat.html',
-      controller: 'ChatController'
+      controller: 'ChatController',
+      params : {sender:'',message:'',date:''}
     })
     $urlRouterProvider.otherwise('/home');
     // chosen on application start is English and the fallback in case a translation does not exist, will be English as well.

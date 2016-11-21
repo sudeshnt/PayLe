@@ -1,0 +1,51 @@
+<ion-view>
+  <pay-le-header></pay-le-header>
+  <ion-content class="fixed-margin-above-88">
+    <div class="list list-inset fixed-margin-above">
+      <form class="form-horizontal" role="form" name="createBillForm">
+        <div class="form-group">
+          <span class="input-label full-width">{{'CUSTOMER_MOBILE' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.customerMobile.$touched) && createBillForm.customerMobile.$error.required) ? 'input-required' : ''">
+            <input type="tel" placeholder="{{'CUSTOMER_MOBILE' | translate}}" ng-model="bill.customerMobile" name="customerMobile" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'AMOUNT' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.amount.$touched) && createBillForm.amount.$error.required) ? 'input-required' : ''">
+            <div class="input-icon">
+              <i>$</i>
+              <input type="number" placeholder="{{'AMOUNT' | translate}}" ng-model="bill.amount" name="amount" required>
+            </div>
+          </label>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'PAYMENT_METHOD' | translate}} <span class="required"> *</span></span>
+          <div  class="row zero-padding">
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="bill.paymentMethod" ng-value="1"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="bill.paymentMethod" ng-value="2"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+            <div class="col zero-padding-sides">
+              <ion-radio ng-model="bill.paymentMethod" ng-value="3"><img src="img/visamaster.png" class="full-width"></ion-radio>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="input-label full-width">{{'COMMENTS' | translate}} <span class="required"> *</span></span>
+          <label class="item item-input" ng-class="((formSubmitted || createBillForm.comment.$touched) && createBillForm.comment.$error.required) ? 'input-required' : ''">
+            <textarea rows="4" placeholder="{{'COMMENTS' | translate}}" ng-model="bill.comment" name="comment" required></textarea>
+          </label>
+        </div>
+        <div class="error" style="margin:1%" ng-if="errorMessage">{{errorMessage}}</div>
+        <div class="align-center full-width">
+          <a  class="button button-block custom-height-button full-width" ng-click="createBill(createBillForm.$valid)">
+            {{'CREATE_BILL' | translate}}
+          </a>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+
+</ion-view>

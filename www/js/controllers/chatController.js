@@ -1,5 +1,9 @@
-angular.module('starter').controller('ChatController', function($scope, $ionicFrostedDelegate, $ionicScrollDelegate, $rootScope,dateFilter) {
-    console.log(dateFilter());
+angular.module('starter').controller('ChatController', function($scope, $ionicFrostedDelegate, $ionicScrollDelegate, $rootScope,dateFilter, $stateParams,$timeout) {
+    $timeout(function(){
+      $ionicScrollDelegate.$getByHandle('myScroll').scrollBottom(false);
+    },50)
+    /*$ionicFrostedDelegate.update();
+    $ionicScrollDelegate.scrollBottom(true);*/
     var messageOptions = [
       {
         messageType:'received',
@@ -7,7 +11,7 @@ angular.module('starter').controller('ChatController', function($scope, $ionicFr
         sender: {
           name: 'Anne',
           profilePic: 'http://ionicframework.com/img/docs/barrett.jpg'
-        },
+          },
         content: {
           type:'text',
           content:'Wow, this is really something huh?'
@@ -158,10 +162,34 @@ angular.module('starter').controller('ChatController', function($scope, $ionicFr
     var messageIter = 0;
     $scope.messages = messageOptions.slice(0, messageOptions.length);
 
+    if(localStorage.getItem('messages')!=null){
+      $scope.messages = JSON.parse(localStorage.getItem('messages'));
+      console.log($scope.messages);
+    }
+
+    if($stateParams.message!=''){
+      console.log($stateParams.message);
+      var nextMessage = {
+        messageType:'received',
+        dateTime: $stateParams.date,
+        sender: {
+          name:$stateParams.sender ,
+          profilePic: 'http://ionicframework.com/img/docs/barrett.jpg'
+        },
+        content: {
+          type:'text',
+          content: $stateParams.message
+        }
+      };
+      $scope.messages.push(angular.extend({}, nextMessage));
+      // $ionicFrostedDelegate.update();
+      localStorage.setItem('messages',JSON.stringify($scope.messages));
+    }
+
     $scope.sendMessage = function(message) {
       var nexMessage = {
         messageType:'sent',
-        dateTime: '2016-11-18 12.55 PM',
+        dateTime: dateFilter(new Date(),'yy-MMM-d hh:mm:ss a'),
         sender: {
           name: 'Jack',
           profilePic: 'http://ionicframework.com/img/docs/spengler.jpg'
@@ -172,15 +200,17 @@ angular.module('starter').controller('ChatController', function($scope, $ionicFr
         }
       };
       $scope.messages.push(angular.extend({}, nexMessage));
+      localStorage.setItem('messages',JSON.stringify($scope.messages));
       // Update the scroll area and tell the frosted glass to redraw itself
       $ionicFrostedDelegate.update();
       $ionicScrollDelegate.scrollBottom(true);
-      receiveMessage();
+      //receiveMessage();
     };
 
     function receiveMessage() {
       var nextMessage = messageOptions[messageIter++ % messageOptions.length];
       $scope.messages.push(angular.extend({}, nextMessage));
+      localStorage.setItem('messages',JSON.stringify($scope.messages));
       /*$ionicFrostedDelegate.update();
       $ionicScrollDelegate.scrollBottom(true);*/
     }
