@@ -16,7 +16,7 @@ angular.module('starter', ['ionic',
                           'ionic.contrib.frostedGlass'
                           ])
 
-.run(function($ionicPlatform,$ionicPopup,RequestsService,$state,$stateParams,$cordovaToast,dateFilter) {
+.run(function($ionicPlatform,$ionicPopup,RequestsService,$state,$stateParams,$cordovaToast,dateFilter,$rootScope) {
   $ionicPlatform.ready(function() {
     setTimeout(function() {
       navigator.splashscreen.hide();
@@ -61,7 +61,8 @@ angular.module('starter', ['ionic',
           console.log(JSON.stringify(e));
           console.log($state.current.name);
           if($state.current.name=='chat'){
-            $state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')});
+            $rootScope.$emit("CallParentMethod", {sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')});
+            //$state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')});
             // $state.go('chat',{sender:'Anne',message:e.message,date:dateFilter(new Date(),'yy-MMM-d hh:mm:ss a')},{reload: true});
           }else{
               $ionicPopup.confirm({
